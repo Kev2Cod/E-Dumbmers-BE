@@ -14,13 +14,13 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // cors digunakan agar client bisa melakukan CRUD
-    origin: "http://localhost:3000", // define client origin if both client and server have different origin
+    origin: process.env.CLIENT_URL || "http://localhost:3000", // define client origin if both client and server have different origin
   },
 });
 
 require("./src/socket")(io);
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 app.use(express.json());
 app.use(cors());
