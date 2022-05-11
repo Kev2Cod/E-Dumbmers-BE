@@ -47,22 +47,22 @@ exports.updateProfile = async (req, res) => {
       }
     );
 
-    let profileUser = {
-      phone: req?.body?.phone,
-      gender: req?.body?.gender,
-      address: req?.body?.address,
-      image: req?.file?.filename,
-      // idUser: req.user.id
-    };
-    console.log(req.body)
-    console.log(profileUser)
+    // let profileUser = {
+    //   phone: req?.body?.phone,
+    //   gender: req?.body?.gender,
+    //   address: req?.body?.address,
+    //   image: req?.file?.filename,
+    //   // idUser: req.user.id
+    // };
+    // console.log(req.body)
+    // console.log(profileUser)
 
     profileUser = JSON.parse(JSON.stringify(profileUser));
     console.log("get data profile: ", profileUser);
 
     const updateProfile = await profile.update(
       {
-        ...profileUser,
+        ...req.body,
       },
       {
         where: {
