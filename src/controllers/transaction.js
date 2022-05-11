@@ -102,7 +102,7 @@ exports.getTransaction = async (req, res) => {
         ...item,
         product: {
           ...item.product,
-          image: process.env.FILE_PATH + item.product.image,
+          image: process.env.PATH_FILE + item.product.image, 
         },
       };
     });
@@ -250,7 +250,7 @@ exports.notification = async (req, res) => {
       // TODO set transaction status on your database to 'failure'
       // and response with 200 OK
       sendEmail("failed", orderId);
-      updateTransaction("Failed", orderId);
+      updateTransaction("failed", orderId);
       res.status(200);
     } else if (transactionStatus == "pending") {
       // TODO set transaction status on your database to 'pending' / waiting payment
