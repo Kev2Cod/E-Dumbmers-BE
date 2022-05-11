@@ -1,6 +1,6 @@
 const { product, user, category, productCategory } = require("../../models");
 
-const cloudinary = require('../utils/cloudynary');
+const cloudinary = require("../utils/cloudynary");
 
 // ============== GET PRODUCTS ===============
 exports.getProduct = async (req, res) => {
@@ -37,7 +37,7 @@ exports.getProduct = async (req, res) => {
     data = data.map((item) => {
       return {
         ...item,
-        image: process.env.FILE_PATH + item?.image,
+        image: process.env.PATH_FILE + item?.image,
       };
     });
 
@@ -65,11 +65,11 @@ exports.addProduct = async (req, res) => {
     }
 
     const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: 'dumbmerch_file',
+      folder: "dumbmerch_file",
       use_filename: true,
       unique_filename: false,
     });
-    console.log("Cloudinary: ",result)
+    console.log("Cloudinary: ", result);
 
     const data = {
       name: req.body.name,
@@ -126,7 +126,7 @@ exports.addProduct = async (req, res) => {
       message: "Add Product Success",
       data: {
         ...products,
-        image: "https://e-dumbmers.herokuapp.com/uploads/" + products.image,
+        image: process.env.PATH_FILE + products.image,
       },
     });
   } catch (error) {
@@ -174,7 +174,7 @@ exports.getDetailProduct = async (req, res) => {
 
     data = {
       ...data,
-      image: process.env.FILE_PATH + data.image,
+      image: process.env.PATH_FILE + data.image,
     };
 
     res.status(200).send({
@@ -241,7 +241,7 @@ exports.updateProduct = async (req, res) => {
         id,
         data,
         productCategoryData,
-        image: process.env.FILE_PATH + req?.file?.filename,
+        image: process.env.PATH_FILE + req?.file?.filename,
       },
     });
   } catch (error) {
