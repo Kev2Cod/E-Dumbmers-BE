@@ -69,7 +69,6 @@ exports.addProduct = async (req, res) => {
       use_filename: true,
       unique_filename: false,
     });
-
     console.log("Cloudinary: ",result)
 
     const data = {
