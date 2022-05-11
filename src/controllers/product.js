@@ -202,11 +202,18 @@ exports.updateProduct = async (req, res) => {
       categoryId = categoryId.split(",");
     }
 
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      folder: "dumbmerch_file",
+      use_filename: true,
+      unique_filename: false,
+    });
+    console.log("Cloudinary: ", result);
+
     const data = {
       name: req?.body?.name,
       desc: req?.body?.desc,
       price: req?.body?.price,
-      image: req?.file?.filename,
+      image: result?.public_id,
       qty: req?.body?.qty,
       idUser: req?.user?.id,
     };
