@@ -57,12 +57,12 @@ exports.updateProfile = async (req, res) => {
     // console.log(req.body)
     // console.log(profileUser)
 
-    profileUser = JSON.parse(JSON.stringify(profileUser));
+    profileUser = JSON.parse(JSON.stringify(req.body));
     console.log("get data profile: ", profileUser);
 
     const updateProfile = await profile.update(
       {
-        ...req.body,
+        ...profileUser,
       },
       {
         where: {
