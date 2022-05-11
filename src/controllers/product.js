@@ -117,7 +117,7 @@ exports.addProduct = async (req, res) => {
       message: "Add Product Success",
       data: {
         ...products,
-        image: process.env.FILE_PATH + products.image,
+        image: process.env.FILE_PATH + products?.image,
       },
     });
   } catch (error) {
