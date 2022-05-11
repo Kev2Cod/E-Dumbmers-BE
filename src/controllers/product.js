@@ -117,7 +117,7 @@ exports.addProduct = async (req, res) => {
       message: "Add Product Success",
       data: {
         ...products,
-        image: "https://e-dumbmers.herokuapp.com/uploads" + products.image,
+        image: "https://e-dumbmers.herokuapp.com/uploads/" + products.image,
       },
     });
   } catch (error) {
