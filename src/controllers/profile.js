@@ -1,4 +1,6 @@
 const { profile, user } = require("../../models");
+const cloudinary = require("../utils/cloudynary");
+const { addProduct } = require("./product");
 
 // ============ ADD PROFILE ===============
 exports.addProfile = async (req, res) => {
@@ -27,14 +29,13 @@ exports.addProfile = async (req, res) => {
 
 // ============ UPDATE PROFILE ===============
 exports.updateProfile = async (req, res) => {
-  const { id } = req.params;
   try {
+    // Update for table users
     let dataUser = {
       name: req?.body?.name,
     };
 
     dataUser = JSON.parse(JSON.stringify(dataUser));
-    console.log("get data name User : ", dataUser);
 
     const updateName = await user.update(
       {
@@ -47,21 +48,43 @@ exports.updateProfile = async (req, res) => {
       }
     );
 
-    profileUser = JSON.parse(JSON.stringify(req.body));
-    console.log("get data profile: ", profileUser);
+    // Update for table profile database
 
-    const updateProfile = await profile.update(
-      {
-        ...profileUser,
+    // let profileUser = JSON.parse(JSON.stringify(req.body));
+    // console.log("get data profile: ", profileUser);
+
+    const getProfile = await profile.findOne({
+      where: req.user.id,
+    });
+    console.log("ISI GET PROFILE: ", getProfile);
+
+    let result = {};
+    // check condition for upload image if image is null/undefine
+    if (req.file?.path) {
+      // delete image
+      console.log("PROSES DELETE JALAN");
+      // await cloudinary.uploader.destroy(getProduct.image, (error, result) => {
+      //   console.log("result : ", result);
+      //   console.log("error : ", error);
+      // });
+      // upload image
+      result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "dumbmerch_file",
+        use_filename: true,
+        unique_filename: false,
+      });
+    }
+
+    const data = {
+      ...req.body,
+      image: result?.public_id,
+    };
+
+    const updateProfile = await profile.update(data, {
+      where: {
+        idUser: req.user.id,
       },
-      {
-        where: {
-          idUser: req.user.id,
-        },
-      }
-    );
-
-    // console.log(addProfile)
+    });
 
     res.status(200).send({
       status: "Success",

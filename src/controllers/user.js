@@ -112,10 +112,10 @@ exports.getUser = async (req, res) => {
       ...data,
       profile: {
         phone: data?.profile?.phone,
-        gender:data?.profile?.gender,
-        address:data?.profile?.address,
-        image: data?.profile?.image ? (process.env.FILE_PATH + data?.profile?.image) : (null),
-      }
+        gender: data?.profile?.gender,
+        address: data?.profile?.address,
+        image: data?.profile?.image ? process.env.PATH_FILE + data?.profile?.image : null,
+      },
     };
 
     res.status(200).send({

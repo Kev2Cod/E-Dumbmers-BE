@@ -194,7 +194,6 @@ exports.getDetailProduct = async (req, res) => {
 // ============ UPDATED PRODUCT ========
 exports.updateProduct = async (req, res) => {
   const { id } = req.params;
-  console.log(id);
   try {
     let { categoryId } = req.body;
 
@@ -202,12 +201,31 @@ exports.updateProduct = async (req, res) => {
       categoryId = categoryId.split(",");
     }
 
-    const result = await cloudinary.uploader.upload(req.file.path, {
-      folder: "dumbmerch_file",
-      use_filename: true,
-      unique_filename: false,
+    // Get product for delete image at cloudynary
+    const getProduct = await product.findOne({
+      where: { id },
     });
-    console.log("Cloudinary: ", result);
+
+    console.log("Product: ", getProduct?.image);
+
+    let result = {};
+    // check condition for upload image if image is null/undefine
+    if (req.file?.path) {
+      // delete image
+      console.log("PROSES DELETE JALAN");
+      await cloudinary.uploader.destroy(getProduct.image, (error, result) => {
+        console.log("result : ", result);
+        console.log("error : ", error);
+      });
+
+      // upload image
+      result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "dumbmerch_file",
+        use_filename: true,
+        unique_filename: false,
+      });
+    }
+    console.log("Cloudinary: ", result?.public_id);
 
     const data = {
       name: req?.body?.name,
@@ -265,6 +283,17 @@ exports.deleteProduct = async (req, res) => {
   const { id } = req.params;
 
   try {
+    // Get product
+    const getProduct = await product.findOne({
+      where: { id },
+    });
+
+    await cloudinary.uploader.destroy(getProduct.image, (error, result) => {
+      console.log("result : ", result);
+      console.log("error : ", error);
+    });
+
+    // Delete product at database
     const products = await product.destroy({
       where: { id },
     });
