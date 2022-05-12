@@ -63,10 +63,10 @@ exports.updateProfile = async (req, res) => {
     if (req.file?.path) {
       // delete image
       console.log("PROSES DELETE JALAN");
-      // await cloudinary.uploader.destroy(getProduct.image, (error, result) => {
-      //   console.log("result : ", result);
-      //   console.log("error : ", error);
-      // });
+      await cloudinary.uploader.destroy(getProfile.image, (error, result) => {
+        console.log("result : ", result);
+        console.log("error : ", error);
+      });
       // upload image
       result = await cloudinary.uploader.upload(req.file.path, {
         folder: "dumbmerch_file",
