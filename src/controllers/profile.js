@@ -54,21 +54,31 @@ exports.updateProfile = async (req, res) => {
     // console.log("get data profile: ", profileUser);
 
     const getProfile = await profile.findOne({
-      where: req.user.id,
+      where: {
+        idUser: req.user.id,
+      },
     });
     console.log("ISI GET PROFILE: ", getProfile);
 
     let result = {};
     // check condition for upload image if image is null/undefine
-    if (req.file?.path) {
+    if (req.file?.path && getProfile.image) {
       // delete image
       console.log("PROSES DELETE JALAN");
-      await cloudinary.uploader.destroy(getProfile.image, (error, result) => {
+      await cloudinary.uploader.destroy(getProfile?.image, (error, result) => {
         console.log("result : ", result);
         console.log("error : ", error);
       });
       // upload image
+      console.log("PROSES UPDATE JALAN");
       result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "dumbmerch_file",
+        use_filename: true,
+        unique_filename: false,
+      });
+    } else if(req.file?.path) {
+      console.log("PROSES UPLOAD JALAN");
+      result = await cloudinary.uploader.upload(req.file?.path, {
         folder: "dumbmerch_file",
         use_filename: true,
         unique_filename: false,
