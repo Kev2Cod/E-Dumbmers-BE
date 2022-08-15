@@ -1,10 +1,10 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "dumbmers_database",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "postgres",
+    "password": "root",
+    "database": "db_dumbmers",
+    "host": "103.134.154.74",
+    "dialect": "postgres"
   },
   "test": {
     "username": "root",
@@ -14,16 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
-    "username": "root",
+    "username": "postgres",
     "password": "root",
-    "dialect": "postgres",
-    "protocol": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "database": "db_dumbmers",
+    "host": "103.134.154.74",
+    "dialect": "postgres"
    }
 }
