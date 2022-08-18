@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_USER: kevin
       POSTGRES_PASSWORD: kevin12345
-      PGDATA: /data/postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
-       - postgres:/data/postgres
+       - /custom/mount:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     restart: unless-stopped
