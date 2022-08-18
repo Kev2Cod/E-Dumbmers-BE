@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "kevin",
-    "password": "root",
+    "username": "postgres",
+    "password": "changeme",
     "database": "database_dumbmers",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
   },
   "test": {
-    "username": "kevin",
-    "password": "root",
+    "username": "postgres",
+    "password": "changeme",
     "database": "database_dumbmers",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
   },
   "production": {
-    "username": "kevin",
-    "password": "root",
+    "username": "postgres",
+    "password": "changeme",
     "database": "database_dumbmers",
     "host": "127.0.0.1",
     "port": 5432,
