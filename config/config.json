@@ -1,31 +1,26 @@
 {
   "development": {
-    "use_env_variable": "postgres://dumbmers:mydatabasesecret@mydbdumbmers.c9kzegtqoyfp.us-east-2.rds.amazonaws.com:5432/dumbmers_db",
-    "dialect": "postgres",
-    "protocol": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "username": "postgres",
+    "password": "changeme",
+    "database": "database_dumbmers",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
   },
   "test": {
-    "username": "sena",
-    "password": "febrisena123",
-    "database": "database_dumbmerch",
+    "username": "postgres",
+    "password": "changeme",
+    "database": "database_dumbmers",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "port": 5432,
+    "dialect": "postgres"
   },
   "production": {
-    "use_env_variable": "postgres://dumbmers:mydatabasesecret@mydbdumbmers.c9kzegtqoyfp.us-east-2.rds.amazonaws.com:5432/dumbmers_db",
-    "dialect": "postgres",
-    "protocol": "postgres",
-    "dialectOptions": {
-      "ssl": {
-        "require": true,
-        "rejectUnauthorized": false
-      }
-    }
+    "username": "postgres",
+    "password": "changeme",
+    "database": "database_dumbmers",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "dialect": "postgres"
    }
 }
