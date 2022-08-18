@@ -5,8 +5,8 @@ services:
     container_name: postgres
     image: postgres:14
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-kevin}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-root}
+      POSTGRES_USER: kevin
+      POSTGRES_PASSWORD: root
       PGDATA: /data/postgres
     volumes:
        - postgres:/data/postgres
@@ -20,8 +20,8 @@ services:
     container_name: pgadmin
     image: dpage/pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: admin
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
        - pgadmin:/var/lib/pgadmin
