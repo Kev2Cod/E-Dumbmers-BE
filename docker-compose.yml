@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_USER: kevin
       POSTGRES_PASSWORD: kevin12345
-      PGDATA: /var/lib/postgresql/data/pgdata
+      PGDATA: database_dumbmers
     volumes:
-       - /custom/mount:/var/lib/postgresql/data
+       - postgres:/data/postgres/database_dumbmers
     ports:
       - "5432:5432"
     restart: unless-stopped
