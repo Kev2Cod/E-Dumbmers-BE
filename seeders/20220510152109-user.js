@@ -8,7 +8,7 @@ module.exports = {
         {
           name: "Admin 1",
           email: "admin1@mail.com",
-          password: "$2b$10$GMesDJo3fh9xtKFz58nimODJsTj2Kj6xRxsNJwYOHZLxiQfGqGfeK",
+          password: "$2b$10$d0y4l/bl09TqaM3kpc4ED.e5W6vkiZXVJGb1cbyoUq4pi03siFRJG",
           status: "admin",
           createdAt: new Date(),
           updatedAt: new Date(),
