@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // cors digunakan agar client bisa melakukan CRUD
-    origin: "http://127.0.0.1:3000", // define client origin if both client and server have different origin
+    origin: "http://localhost:3000", // define client origin if both client and server have different origin
   },
 });
 
