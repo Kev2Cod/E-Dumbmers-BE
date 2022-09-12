@@ -15,7 +15,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     // cors digunakan agar client bisa melakukan CRUD
-    origin: "https://dumbmers.kevinwilliams.my.id", // define client origin if both client and server have different origin
+    origin: "https://dumbmers.projeku.tech", // define client origin if both client and server have different origin
   },
 });
 
